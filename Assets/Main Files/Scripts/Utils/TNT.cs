@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject BlastParticlePrefab;
+
+    private bool hasHitSomeThing;
+
+    private void Update()
     {
-        
+        if (!hasHitSomeThing && Controller.Instance.IsIndivisualIlluminationOn)
+        {
+            Shader.SetGlobalVector("LightPosition", transform.position);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (!hasHitSomeThing)
+        {
+            if (collision.gameObject.tag == "Block")
+            {
+                Controller.Instance.RemoveHeart();
+            }
+            Instantiate(BlastParticlePrefab).transform.position = transform.position;
+            hasHitSomeThing = true;
+            if (transform.GetChild(transform.childCount - 1).GetComponent<Camera>() != null)
+            {
+                transform.GetChild(transform.childCount - 1).parent = null;
+            }
+            Destroy(gameObject);
+        }
     }
 }

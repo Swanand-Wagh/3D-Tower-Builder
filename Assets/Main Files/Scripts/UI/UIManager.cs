@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject GamePlayPanel;
     public GameObject GameCompeletePanel;
 
+    public Transform HeartsParent;
+
     public Crane Crane;
     public TextMeshProUGUI YSliderValue;
     public TextMeshProUGUI SwingSpeedSliderValue;
@@ -94,13 +96,31 @@ public class UIManager : MonoBehaviour
         Controller.Instance.ToggleIndivisualLight(value);
     }
 
+    public void ToggleLampLights(bool value)
+    {
+        Controller.Instance.ToggleLampLights(value);
+    }
+
     public void OnSwitchCameraPressed()
     {
         Controller.Instance.ToggleCamera();
     }
 
+    public void OnResetCameraPressed()
+    {
+        Controller.Instance.ResetMainCamera();
+    }
+
     public void SetScoreText(int score)
     {
         ScoreText.text = "Score - " + score.ToString();
+    }
+
+    public void UpdateHeats(int hearts)
+    {
+        for (int i = 2; i >= hearts; i--)
+        {
+            HeartsParent.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }

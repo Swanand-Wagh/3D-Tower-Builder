@@ -6,9 +6,15 @@ public class CameraController : MonoBehaviour
     public GameObject cameraFramePrefab;
     [HideInInspector] public GameObject CameraFrame;
 
+    private Vector3 cameraFrameInitialPosition;
+    private Quaternion cameraFrameInitialRotation;
+
     void Awake()
     {
-        CameraFrame = Instantiate(cameraFramePrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        Vector3 cameraFramePos = transform.position + (transform.forward * (Vector3.zero - transform.position).magnitude);
+        CameraFrame = Instantiate(cameraFramePrefab, cameraFramePos, Quaternion.identity);
+        cameraFrameInitialPosition = CameraFrame.transform.position;
+        cameraFrameInitialRotation = CameraFrame.transform.rotation;
     }
 
     void Update()
@@ -56,6 +62,12 @@ public class CameraController : MonoBehaviour
             if (updatedDistance < 5f) updatedDistance = 5f;
             transform.position = lookAtPosition - dollyDirection.normalized * updatedDistance;
         }
+    }
+
+    public void ResetCameraFrame()
+    {
+        CameraFrame.transform.position = cameraFrameInitialPosition;
+        CameraFrame.transform.rotation = cameraFrameInitialRotation;
     }
 }
 

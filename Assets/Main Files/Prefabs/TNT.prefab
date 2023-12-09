@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 9055179843205019632}
   - component: {fileID: 9101090819203287383}
   - component: {fileID: -6158726885994356718}
+  - component: {fileID: 6292218530492214482}
   m_Layer: 0
   m_Name: TNT
   m_TagString: Untagged
@@ -735,3 +736,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6292218530492214482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566311291834297674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581720fc822aa694cb7abaa7267bf320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlastParticlePrefab: {fileID: 8128943561145207771, guid: 7df0053a834c4ed42b3bf83b6221a53a, type: 3}
